@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://cq13oyda15fu6"]
+
+[ext_resource type="Texture2D" uid="uid://dkrwkj8rmqx6o" path="res://assets/free/assets/character/adult/body/idle/character_brown_idle_body.png" id="1_dy7dn"]
+[ext_resource type="Script" path="res://scenes/enemy.gd" id="1_suhv4"]
+[ext_resource type="PackedScene" uid="uid://dnplwy0h55hr2" path="res://scenes/bullet.tscn" id="2_c51l7"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_08tyu"]
+radius = 4.0
+height = 12.0
+
+[node name="Enemy" type="CharacterBody2D"]
+position = Vector2(97, 121)
+script = ExtResource("1_suhv4")
+Bullet = ExtResource("2_c51l7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_dy7dn")
+hframes = 2
+vframes = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -10)
+shape = SubResource("CapsuleShape2D_08tyu")
+
+[node name="OriginOfBullets" type="Marker2D" parent="."]
+position = Vector2(4, -10)
