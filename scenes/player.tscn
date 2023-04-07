@@ -7,8 +7,8 @@
 radius = 3.0
 height = 12.0
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
-position = Vector2(4, 8)
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(-10, -4)
 script = ExtResource("1_fajb4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
