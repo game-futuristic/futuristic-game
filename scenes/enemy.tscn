@@ -2,14 +2,14 @@
 
 [ext_resource type="Texture2D" uid="uid://dkrwkj8rmqx6o" path="res://assets/free/assets/character/adult/body/idle/character_brown_idle_body.png" id="1_dy7dn"]
 [ext_resource type="Script" path="res://scenes/enemy.gd" id="1_suhv4"]
-[ext_resource type="PackedScene" uid="uid://dnplwy0h55hr2" path="res://scenes/bullet.tscn" id="2_c51l7"]
+[ext_resource type="PackedScene" uid="uid://dlv0xi7a55ord" path="res://scenes/bullet.tscn" id="2_c51l7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_08tyu"]
 radius = 4.0
 height = 12.0
 
 [node name="Enemy" type="CharacterBody2D"]
-position = Vector2(97, 121)
+position = Vector2(21, 29)
 script = ExtResource("1_suhv4")
 Bullet = ExtResource("2_c51l7")
 
