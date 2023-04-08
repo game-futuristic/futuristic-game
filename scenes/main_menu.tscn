@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmcrdi0jvc2wj"]
+
+[ext_resource type="Theme" uid="uid://c6b05awwceyb3" path="res://resources/theme.tres" id="1_jsxna"]
+[ext_resource type="Script" path="res://scenes/menu-i.gd" id="2_15lex"]
+[ext_resource type="PackedScene" uid="uid://clebywqbsfsm5" path="res://scenes/main.tscn" id="3_b06ow"]
+
+[node name="MainMenu" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_jsxna")
+script = ExtResource("2_15lex")
+main_scene = ExtResource("3_b06ow")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Juego" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Juego"
+horizontal_alignment = 1
+
+[node name="Inicio" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Inicio"
+
+[node name="Salir" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Salir"
