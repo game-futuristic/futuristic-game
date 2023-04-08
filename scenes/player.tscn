@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://chm6mn12kuedv"]
+[gd_scene load_steps=5 format=3 uid="uid://chm6mn12kuedv"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_fajb4"]
 [ext_resource type="Texture2D" uid="uid://hq166s1gxao6" path="res://assets/free/assets/character/adult/body/idle/character_light_idle_body.png" id="2_cp48m"]
+[ext_resource type="PackedScene" uid="uid://bx2ij253vpsfi" path="res://scenes/menu_pausa.tscn" id="3_crr88"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0knga"]
 radius = 3.0
@@ -19,3 +20,9 @@ vframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_0knga")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MenuPausa" parent="CanvasLayer" instance=ExtResource("3_crr88")]
+offset_left = -2.0
+offset_right = -2.0
