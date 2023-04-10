@@ -3,12 +3,15 @@ extends Node2D
 @export var PlayerScene: PackedScene
 @export var EnemyScene: PackedScene
 @onready var line = $Line2D
+@onready var closeLine = $closeLine
 
 var player
 var enemy1
 var enemy2
 var enemy3
 var enemiesArray = [enemy1, enemy2, enemy3]
+var initialPoint
+var endPoint
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,7 +30,10 @@ func _ready():
 func _process(delta):
 	if Input.is_action_pressed("eventHorizon"):
 		line.add_point(player.get_global_position())
+		draw_line(initialPoint, player.get_global_position(), Color(255, 255, 255))
+#		queue_redraw()
 	if Input.is_action_just_released("eventHorizon"):
+		draw_line(initialPoint, player.get_global_position(), Color(255, 255, 255))
 		var all_enemies = get_tree().get_nodes_in_group("enemies")
 		for e in all_enemies:
 			if Geometry2D.is_point_in_polygon(e.global_position, line.points):
@@ -37,3 +43,11 @@ func _process(delta):
 func _physics_process(delta):
 	var player_position = player.get_global_position()
 #	enemy.shoot(player_position)
+
+
+# Agregar una linea punteada siempre desde la posicion del jugador al inicio cosa de que demarque la zona que se creara
+# y donde se aplciara el danho
+func _input(event):
+	if Input.is_action_just_pressed("eventHorizon"):
+		initialPoint = player.get_global_position()
+		print(initialPoint)

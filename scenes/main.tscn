@@ -835,3 +835,5 @@ layer_0/tile_data = PackedInt32Array(327680, 0, 3, 327681, 0, 3, 327682, 0, 3, 3
 position = Vector2(1, -5)
 width = 7.0
 default_color = Color(0.898039, 0.843137, 0.32549, 1)
+
+[node name="closeLine" type="Line2D" parent="."]
