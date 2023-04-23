@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://oupngxrkjjpv"]
+
+[ext_resource type="Texture2D" uid="uid://dqcqxkux0v164" path="res://icon.svg" id="1_arv65"]
+[ext_resource type="Script" path="res://scenes/startOfZone.gd" id="1_didj6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o5f78"]
+
+[node name="StartOfZone" type="Area2D"]
+script = ExtResource("1_didj6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_o5f78")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-4.91738e-07, 3.57628e-07)
+scale = Vector2(0.109375, 0.109375)
+texture = ExtResource("1_arv65")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

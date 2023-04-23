@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 const SPEED = 150.0
 
+var onZone = 0
+
 func _physics_process(delta):
 
 	# Get the input direction and handle the movement/deceleration.
@@ -18,12 +20,6 @@ func _physics_process(delta):
 	else:
 		velocity.y = move_toward(velocity.y, 0, SPEED)
 	move_and_slide()
-		
 
-#func _unhandled_input(event):
-#	if event.is_action_released("eventHorizon"):
-#		event_horizon(event)
-#		print("se apreto")
-#
-#func event_horizon(event):
-#	pass
+func startZone(v):
+	onZone += v
