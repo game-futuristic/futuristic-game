@@ -1,5 +1,6 @@
 extends Area2D
 
+@export var player: PackedScene
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,7 +13,11 @@ func _process(delta):
 
 
 func _on_body_entered(body):
-	body.startZone(-2)
+	if body.is_in_group("Player"):
+		body.startZone(1)
+		print("DENTRO")
 
 func _on_body_exited(body):
-	body.startZone(1)
+	if body.is_in_group("Player") and body.activated == 1:
+		body.startZone(1)
+		print("FUERA")

@@ -15,9 +15,10 @@ var enemiesArray = [enemy1, enemy2, enemy3]
 var initialPoint
 var endPoint
 
+var power = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-#	startZone = StartOfZone.instantiate()
 	player = PlayerScene.instantiate()
 	add_child(player)
 	var x_pos = 50
@@ -32,30 +33,32 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Input.is_action_pressed("eventHorizon"):
+	if Input.is_action_just_pressed("eventHorizon") and power == 0:
+		power = 1
+		player.activated = 1
+		print("Poder activado")
+	if power == 1:
 		line.add_point(player.get_global_position())
-	if Input.is_action_just_released("eventHorizon"):
-		if (player.onZone == -3):
-			var all_enemies = get_tree().get_nodes_in_group("enemies")
-			for e in all_enemies:
-				if Geometry2D.is_point_in_polygon(e.global_position, line.points):
-					e.queue_free()
-			startZone.queue_free()
-			print("punto final: ", line.points[-1])
-			line.points = []
-		else:
-			startZone.queue_free()
-			line.points = []
+	if (player.onZone == 3):
+		print("Llego al punto inicial nuevamente: ", player.get_global_position())
+		var all_enemies = get_tree().get_nodes_in_group("enemies")
+		player.activated = 0
+		for e in all_enemies:
+			if Geometry2D.is_point_in_polygon(e.global_position, line.points):
+				e.queue_free()
+		startZone.queue_free()
+		line.points = []
+		power = 0
+		player.onZone = 0
+		print("Valor onZone nuevamente seteado a 0")
 
 func _physics_process(delta):
-	var player_position = player.get_global_position()
+	pass
 
 func _input(event):
-	if Input.is_action_just_pressed("eventHorizon"):
+	if Input.is_action_just_pressed("eventHorizon") and power == 0:
 		startZone = StartOfZone.instantiate()
 		initialPoint = player.get_global_position()
 		startZone.global_position = initialPoint
 		add_child(startZone)
 		print("punto inicial: ", initialPoint)
-#	if Input.is_action_just_released("eventHorizon"):
-#			startZone.queue_free()

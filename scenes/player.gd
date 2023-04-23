@@ -3,6 +3,7 @@ extends CharacterBody2D
 const SPEED = 150.0
 
 var onZone = 0
+var activated = 0
 
 func _physics_process(delta):
 
