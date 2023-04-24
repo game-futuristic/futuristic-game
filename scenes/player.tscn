@@ -11,6 +11,7 @@ height = 12.0
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 position = Vector2(115, 146)
+collision_layer = 3
 script = ExtResource("1_fajb4")
 startEventHorizonScene = ExtResource("2_7ksj4")
 
