@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_fajb4"]
 [ext_resource type="PackedScene" uid="uid://oupngxrkjjpv" path="res://scenes/startOfZone.tscn" id="2_7ksj4"]
 [ext_resource type="Texture2D" uid="uid://hq166s1gxao6" path="res://assets/free/assets/character/adult/body/idle/character_light_idle_body.png" id="2_cp48m"]
-[ext_resource type="PackedScene" path="res://scenes/menu_pausa.tscn" id="3_crr88"]
+[ext_resource type="PackedScene" uid="uid://bx2ij253vpsfi" path="res://scenes/menu_pausa.tscn" id="3_crr88"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0knga"]
 radius = 3.0

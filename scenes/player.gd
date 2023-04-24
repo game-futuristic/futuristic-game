@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED = 150.0
+const SPEED = 125.0
 
 @export var startEventHorizonScene : PackedScene
 
@@ -15,9 +15,6 @@ func _ready():
 	eventHorizonTrail.set_as_top_level(true)
 
 func _physics_process(delta):
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	var x_direction = Input.get_axis("left", "right")
 	if x_direction:
 		velocity.x = x_direction * SPEED
