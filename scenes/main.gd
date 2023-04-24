@@ -2,7 +2,6 @@ extends Node2D
 
 @export var PlayerScene: PackedScene
 @export var EnemyScene: PackedScene
-@onready var line = $Line2D
 
 var player
 var enemy1
@@ -22,18 +21,11 @@ func _ready():
 		i += 2
 		add_child(e)
 		e.add_to_group("enemies")
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Input.is_action_pressed("eventHorizon"):
-		line.add_point(player.get_global_position())
-	if Input.is_action_just_released("eventHorizon"):
-		var all_enemies = get_tree().get_nodes_in_group("enemies")
-		for e in all_enemies:
-			if Geometry2D.is_point_in_polygon(e.global_position, line.points):
-				e.queue_free()
-		line.points = []
+	player.eventHorizon()
 
 func _physics_process(delta):
-	var player_position = player.get_global_position()
-#	enemy.shoot(player_position)
+	pass

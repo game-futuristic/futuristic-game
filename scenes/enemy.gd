@@ -1,19 +1,18 @@
 extends CharacterBody2D
 
+const SPEED = 30
 
-#@export var Bullet: PackedScene
-
-#@onready var origin_of_bullets = $OriginOfBullets
+var player = null
+var player_chase = false
 
 func _physics_process(delta):
-	pass
+	if player_chase:
+		position += (player.global_position - position)/SPEED
 
-# get_global_position() puede servir para obtener la posicion
-# del jugador y dirigir las balas hacia el
-#func shoot(player_position):
-#	#pass
-#	var bullet_instance = Bullet.instantiate()
-#	add_child(bullet_instance)
-#	bullet_instance.global_position = origin_of_bullets.global_position
-#	var bullet_direction = bullet_instance.global_position.direction_to(player_position).normalized()
-#	bullet_instance.set_direction(bullet_direction)
+func _on_detection_area_body_entered(body):
+	player = body
+	player_chase = true
+
+func _on_detection_area_body_exited(body):
+	player = null
+	player_chase = false
