@@ -7,7 +7,7 @@
 radius = 3.0
 height = 12.0
 
-[node name="enemy" type="CharacterBody2D"]
+[node name="enemy" type="CharacterBody2D" groups=["enemies"]]
 script = ExtResource("1_68c01")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -18,3 +18,6 @@ vframes = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_e7yij")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]

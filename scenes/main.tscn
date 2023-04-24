@@ -823,8 +823,6 @@ sources/0 = SubResource("TileSetAtlasSource_qther")
 
 [node name="Main" type="Node2D" groups=["enemies"]]
 script = ExtResource("1_xorg5")
-PlayerScene = ExtResource("2_x5dus")
-EnemyScene = ExtResource("3_qbdu6")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_xqx8s")
@@ -835,3 +833,9 @@ layer_0/tile_data = PackedInt32Array(327680, 0, 3, 327681, 0, 3, 327682, 0, 3, 3
 position = Vector2(1, -5)
 width = 7.0
 default_color = Color(0.898039, 0.843137, 0.32549, 1)
+
+[node name="enemy" parent="." instance=ExtResource("3_qbdu6")]
+position = Vector2(55, 95)
+
+[node name="Player" parent="." instance=ExtResource("2_x5dus")]
+position = Vector2(87, 134)

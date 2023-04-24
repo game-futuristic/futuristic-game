@@ -1,30 +1,35 @@
 extends Node2D
 
-@export var PlayerScene: PackedScene
-@export var EnemyScene: PackedScene
+#@export var PlayerScene: PackedScene
 @onready var line = $Line2D
+@onready var player = $Player
+@onready var enemy = $enemy
 
-var player
-var enemy1
-var enemy2
-var enemy3
-var enemiesArray = [enemy1, enemy2, enemy3]
+#var player
+#var enemy1
+#var enemy2
+#var enemy3
+#var enemiesArray = [enemy1, enemy2, enemy3]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	player = PlayerScene.instantiate()
-	add_child(player)
-	var x_pos = 50
-	var i = 1
-	for e in enemiesArray:
-		e = EnemyScene.instantiate()
-		e.global_position = Vector2(x_pos*i, 100)
-		i += 2
-		add_child(e)
-		e.add_to_group("enemies")
+	pass
+	#player = PlayerScene.instantiate()
+	#add_child(player)
+	#var x_pos = 50
+	#var i = 1
+#	for e in enemiesArray:
+#		e = EnemyScene.instantiate()
+#		e.global_position = Vector2(x_pos*i, 100)
+#		i += 2
+#		add_child(e)
+#		e.add_to_group("enemies")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	print("proceso main")
+	get_tree().call_group("enemies","_update_target_position", player.global_transform.origin)
+	
 	if Input.is_action_pressed("eventHorizon"):
 		line.add_point(player.get_global_position())
 	if Input.is_action_just_released("eventHorizon"):
@@ -34,6 +39,8 @@ func _process(delta):
 				e.queue_free()
 		line.points = []
 
-func _physics_process(delta):
-	var player_position = player.get_global_position()
+	
+	
+#func _physics_process(delta):
+	#var player_position = player.get_global_position()
 #	enemy.shoot(player_position)
