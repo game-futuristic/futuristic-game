@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://42rulclboxjq"]
+[gd_scene load_steps=6 format=3 uid="uid://42rulclboxjq"]
 
 [ext_resource type="Texture2D" uid="uid://bkfbon7k7b1ro" path="res://assets/free/assets/character/adult/body/idle/character_black_idle_body.png" id="1_3xkvf"]
 [ext_resource type="Script" path="res://scenes/enemy.gd" id="1_68c01"]
@@ -9,6 +9,9 @@ height = 12.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gwd0c"]
 radius = 65.0077
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0pmai"]
+radius = 8.0
 
 [node name="enemy" type="CharacterBody2D"]
 script = ExtResource("1_68c01")
@@ -28,6 +31,11 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource("CircleShape2D_gwd0c")
+
+[node name="enemyHitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemyHitbox"]
+shape = SubResource("CircleShape2D_0pmai")
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]

@@ -6,6 +6,11 @@ const SPEED = 125.0
 
 @onready var eventHorizonTrail = $eventHorizonTrail
 
+var enemy_inattack_range = false # Detecta si enemigo esta en la zona de ataque
+var enemy_attack_cooldown = true
+var health = 100
+var player_alive = true
+
 var onZone = 0
 var activated = 0
 var power = 0
@@ -58,3 +63,30 @@ func _input(event):
 		startEventHorizon.global_position = initialPoint
 		get_parent().add_child(startEventHorizon)
 		print("punto inicial: ", initialPoint)
+
+
+func _on_player_hitbox_body_entered(body):
+	if body.has_method("enemy"):
+		enemy_inattack_range = true
+
+
+func _on_player_hitbox_body_exited(body):
+	if body.has_method("enemy"):
+		enemy_inattack_range = false
+
+func enemy_attack():
+	if enemy_inattack_range and enemy_attack_cooldown == true:
+		health = health - 20
+		enemy_attack_cooldown = false
+		$attackCooldown.start()
+		print("enemy attack!")
+
+# Este metodo es similar al metodo enemy de la clase de enemigos, es para identificar
+# que el objeto sea de un tipo en especifico usando has_method(), como en el caso de la
+# senhal _on_player_hitbox_body_exited(body)
+func player():
+	pass
+
+
+func _on_attack_cooldown_timeout():
+	enemy_attack_cooldown = true

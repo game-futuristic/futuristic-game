@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://chm6mn12kuedv"]
+[gd_scene load_steps=7 format=3 uid="uid://chm6mn12kuedv"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_fajb4"]
 [ext_resource type="PackedScene" uid="uid://oupngxrkjjpv" path="res://scenes/startOfZone.tscn" id="2_7ksj4"]
@@ -8,6 +8,9 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0knga"]
 radius = 3.0
 height = 12.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cx8dx"]
+radius = 7.0
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 position = Vector2(115, 146)
@@ -34,3 +37,14 @@ offset_right = -2.0
 position = Vector2(1, -5)
 width = 7.0
 default_color = Color(0.898039, 0.843137, 0.32549, 1)
+
+[node name="playerHitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="playerHitbox"]
+shape = SubResource("CircleShape2D_cx8dx")
+
+[node name="attackCooldown" type="Timer" parent="."]
+
+[connection signal="body_entered" from="playerHitbox" to="." method="_on_player_hitbox_body_entered"]
+[connection signal="body_exited" from="playerHitbox" to="." method="_on_player_hitbox_body_exited"]
+[connection signal="timeout" from="attackCooldown" to="." method="_on_attack_cooldown_timeout"]
