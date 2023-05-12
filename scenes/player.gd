@@ -46,7 +46,8 @@ func eventHorizon():
 		self.activated = 0
 		for e in all_enemies:
 			if Geometry2D.is_point_in_polygon(e.global_position, eventHorizonTrail.points):
-				e.queue_free()
+#				e.queue_free()
+				e.health = e.health - 50
 		startEventHorizon.queue_free()
 		eventHorizonTrail.points = []
 		power = 0
