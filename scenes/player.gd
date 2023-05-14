@@ -8,7 +8,7 @@ const SPEED = 125.0
 
 var enemy_inattack_range = false # Detecta si enemigo esta en la zona de ataque
 var enemy_attack_cooldown = true
-var health = 100
+var health = 500
 var player_alive = true
 
 var onZone = 0
@@ -32,6 +32,7 @@ func _physics_process(delta):
 	else:
 		velocity.y = move_toward(velocity.y, 0, SPEED)
 	move_and_slide()
+	update_health()
 
 func eventHorizon():
 	if Input.is_action_just_pressed("eventHorizon") and power == 0:
@@ -91,3 +92,25 @@ func player():
 
 func _on_attack_cooldown_timeout():
 	enemy_attack_cooldown = true
+
+# ------------------------------------------------------------------------------
+# Barra de salud y regeneracion
+
+func update_health():
+	var health_bar = $healthBar
+	health_bar.value = health
+	
+	if health >= 500:
+		health_bar.visible = false
+	else:
+		health_bar.visible = true
+
+func _on_regin_timer_timeout():
+	if health < 500:
+		health = health + 20
+		if health > 500:
+			health = 500
+	if health <= 0:
+		health = 0
+
+# ------------------------------------------------------------------------------
