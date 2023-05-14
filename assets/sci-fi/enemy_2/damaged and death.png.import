@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://3n7m3c5dfqd"
-path="res://.godot/imported/damaged and death.png-4536ea86986d0a1256f735b6b6d6db4f.ctex"
+uid="uid://cftv0wymybdq4"
+path="res://.godot/imported/damaged and death.png-3d4e653b80abf1327bcb920347698331.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sci-fi/damaged and death.png"
-dest_files=["res://.godot/imported/damaged and death.png-4536ea86986d0a1256f735b6b6d6db4f.ctex"]
+source_file="res://assets/sci-fi/enemy_2/damaged and death.png"
+dest_files=["res://.godot/imported/damaged and death.png-3d4e653b80abf1327bcb920347698331.ctex"]
 
 [params]
 
