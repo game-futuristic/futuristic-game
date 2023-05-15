@@ -4,7 +4,6 @@ extends CharacterBody2D
 @onready var playback = animation_tree.get("parameters/playback")
 @onready var animation_player = $AnimationPlayer
 
-const SPEED = 300
 const SPEED = 45
 
 var health = 100
@@ -20,9 +19,9 @@ func _physics_process(delta):
 	if player_chase:
 		position += (player.global_position - position)/SPEED
 		
-		#animation_player.play("run")
-	#else:
-		#animation_player.play("idle")
+		animation_player.play("run")
+	else:
+		animation_player.play("idle")
 
 func _on_detection_area_body_entered(body):
 	player = body

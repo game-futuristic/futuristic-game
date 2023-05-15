@@ -375,8 +375,9 @@ script = ExtResource("1_68c01")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(36, -1)
-texture = ExtResource("2_5drvu")
-hframes = 10
+texture = ExtResource("5_aoxn0")
+hframes = 8
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 0)
@@ -392,7 +393,6 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
-visible = false
 shape = SubResource("CircleShape2D_gwd0c")
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
@@ -404,5 +404,3 @@ parameters/playback = SubResource("AnimationNodeStateMachinePlayback_ch23c")
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
-[connection signal="body_entered" from="enemyHitbox" to="." method="_on_enemy_hitbox_body_entered"]
-[connection signal="body_exited" from="enemyHitbox" to="." method="_on_enemy_hitbox_body_exited"]

@@ -3,12 +3,11 @@ extends CharacterBody2D
 const SPEED = 125.0
 
 @export var startEventHorizonScene : PackedScene
-
 @onready var eventHorizonTrail = $eventHorizonTrail
+@onready var health_bar = $healthBar
 
 var enemy_inattack_range = false # Detecta si enemigo esta en la zona de ataque
 var enemy_attack_cooldown = true
-var health = 500
 var player_alive = true
 
 var onZone = 0
@@ -16,10 +15,25 @@ var activated = 0
 var power = 0
 var startEventHorizon
 
+
 func _ready():
 	eventHorizonTrail.set_as_top_level(true)
 
 func _physics_process(delta):
+
+	move_and_slide()
+	update_health()
+	player_movement()
+	eventHorizon()
+	enemy_attack()
+
+func _process(delta):
+	update_health()
+
+# ------------------------------------------------------------------------------
+# Movimiento jugador
+
+func player_movement():
 	var x_direction = Input.get_axis("left", "right")
 	if x_direction:
 		velocity.x = x_direction * SPEED
@@ -31,8 +45,8 @@ func _physics_process(delta):
 		velocity.y = y_direction * SPEED
 	else:
 		velocity.y = move_toward(velocity.y, 0, SPEED)
-	move_and_slide()
-	update_health()
+
+# ------------------------------------------------------------------------------
 
 func eventHorizon():
 	if Input.is_action_just_pressed("eventHorizon") and power == 0:
@@ -78,10 +92,11 @@ func _on_player_hitbox_body_exited(body):
 
 func enemy_attack():
 	if enemy_inattack_range and enemy_attack_cooldown == true:
-		health = health - 20
+		health_bar.value -= 50
 		enemy_attack_cooldown = false
 		$attackCooldown.start()
 		print("enemy attack!")
+		print("healthbar.value", health_bar.value)
 
 # Este metodo es similar al metodo enemy de la clase de enemigos, es para identificar
 # que el objeto sea de un tipo en especifico usando has_method(), como en el caso de la
@@ -96,21 +111,23 @@ func _on_attack_cooldown_timeout():
 # ------------------------------------------------------------------------------
 # Barra de salud y regeneracion
 
+# La barra de salud es de 500 y hasta ahora los enemigos pegan 50 (en enemy_attack() se muestra)
+# tambien hay regeneracion de la barra de salud cada 5 segundos si es que esta disminuyo,
+# la regeneracion es de 40
+# Cualquier edit a la barra de salud se debe hacer desde el nodo en el inspector.
+
 func update_health():
-	var health_bar = $healthBar
-	health_bar.value = health
-	
-	if health >= 500:
+	if health_bar.value >= 500:
 		health_bar.visible = false
 	else:
 		health_bar.visible = true
 
 func _on_regin_timer_timeout():
-	if health < 500:
-		health = health + 20
-		if health > 500:
-			health = 500
-	if health <= 0:
-		health = 0
+	if health_bar.value < 500:
+		health_bar.value += 40
+		if health_bar.value > 500:
+			health_bar.value = 500
+	if health_bar.value <= 0:
+		health_bar.value = 0
 
 # ------------------------------------------------------------------------------
