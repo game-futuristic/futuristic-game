@@ -10,17 +10,15 @@ var enemy_inattack_range = false # Detecta si enemigo esta en la zona de ataque
 var enemy_attack_cooldown = true
 var player_alive = true
 
-var onZone = 0
-var activated = 0
-var power = 0
-var startEventHorizon
+@onready var startEventHorizon = startEventHorizonScene.instantiate()
+
+var is_event_horizon_activated = false
 
 
 func _ready():
 	eventHorizonTrail.set_as_top_level(true)
 
 func _physics_process(delta):
-
 	move_and_slide()
 	update_health()
 	player_movement()
@@ -29,6 +27,18 @@ func _physics_process(delta):
 
 func _process(delta):
 	update_health()
+
+func _input(event):
+	if Input.is_action_just_pressed("eventHorizon") and !is_event_horizon_activated:
+		is_event_horizon_activated = true
+		startEventHorizon.global_position = self.get_global_position()
+		
+		# Volvemos a setear a valores por defecto false, pues al remover el nodo
+		# los valores son los seteados la ultima vez (i.e true)
+		startEventHorizon.area_closed = false
+		startEventHorizon.is_entering_again = false
+		
+		get_parent().add_child(startEventHorizon)
 
 # ------------------------------------------------------------------------------
 # Movimiento jugador
@@ -47,39 +57,23 @@ func player_movement():
 		velocity.y = move_toward(velocity.y, 0, SPEED)
 
 # ------------------------------------------------------------------------------
+# Event Horizon
 
 func eventHorizon():
-	if Input.is_action_just_pressed("eventHorizon") and power == 0:
-		power = 1
-		activated = 1
-		print("Poder activado")
-	if power == 1:
+	if is_event_horizon_activated:
 		eventHorizonTrail.add_point(self.get_global_position())
-	if (self.onZone == 3):
-		print("Llego al punto inicial nuevamente: ", self.get_global_position())
+	if (startEventHorizon.area_closed):
 		var all_enemies = get_tree().get_nodes_in_group("enemies")
-		self.activated = 0
 		for e in all_enemies:
 			if Geometry2D.is_point_in_polygon(e.global_position, eventHorizonTrail.points):
-#				e.queue_free()
 				e.health = e.health - 50
-		startEventHorizon.queue_free()
+		# Volvemos a setear event_horizon a su valor por defecto false
+		is_event_horizon_activated = false
+		get_parent().remove_child(startEventHorizon)
 		eventHorizonTrail.points = []
-		power = 0
-		self.onZone = 0
-		print("Valor onZone nuevamente seteado a 0")
 
-func startZone(v):
-	onZone += v
-
-func _input(event):
-	if Input.is_action_just_pressed("eventHorizon") and power == 0:
-		startEventHorizon = startEventHorizonScene.instantiate()
-		var initialPoint = self.get_global_position()
-		startEventHorizon.global_position = initialPoint
-		get_parent().add_child(startEventHorizon)
-		print("punto inicial: ", initialPoint)
-
+# ------------------------------------------------------------------------------
+# Control logica ataques enemigos
 
 func _on_player_hitbox_body_entered(body):
 	if body.has_method("enemy"):
