@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://h3qtahny6gew"
-path="res://.godot/imported/wake.png-d4af3316c6e5df5c0118486410d65584.ctex"
+uid="uid://b7gge21bgxcfa"
+path="res://.godot/imported/Run.png-2432234556a8dfa08b5dabcc8dbb4549.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sci-fi/wake.png"
-dest_files=["res://.godot/imported/wake.png-d4af3316c6e5df5c0118486410d65584.ctex"]
+source_file="res://assets/sci-fi/enemy_2/Run.png"
+dest_files=["res://.godot/imported/Run.png-2432234556a8dfa08b5dabcc8dbb4549.ctex"]
 
 [params]
 

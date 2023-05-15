@@ -2,8 +2,10 @@ extends Node2D
 
 @export var PlayerScene: PackedScene
 @export var EnemyScene: PackedScene
+@export var Enemy_2Scene: PackedScene
 
 var player
+var enemy_2
 var enemy1
 var enemy2
 var enemy3
@@ -13,6 +15,8 @@ var enemiesArray = [enemy1, enemy2, enemy3]
 func _ready():
 	player = PlayerScene.instantiate()
 	add_child(player)
+	enemy_2 = Enemy_2Scene.instantiate()
+	add_child(enemy_2)
 	var x_pos = 50
 	var i = 1
 	for e in enemiesArray:
@@ -25,7 +29,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	player.eventHorizon()
+#	player.eventHorizon()
+#	player.enemy_attack()
+	pass
 
 func _physics_process(delta):
-	pass
+	enemy_2.update_target_position(player.global_position)
+	enemy_2._physics_process(delta)

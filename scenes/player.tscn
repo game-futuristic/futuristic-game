@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://chm6mn12kuedv"]
+[gd_scene load_steps=7 format=3 uid="uid://chm6mn12kuedv"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_fajb4"]
 [ext_resource type="PackedScene" uid="uid://oupngxrkjjpv" path="res://scenes/startOfZone.tscn" id="2_7ksj4"]
@@ -9,8 +9,11 @@
 radius = 3.0
 height = 12.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_cx8dx"]
+radius = 7.0
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
-position = Vector2(115, 146)
+position = Vector2(167, 127)
 collision_layer = 3
 script = ExtResource("1_fajb4")
 startEventHorizonScene = ExtResource("2_7ksj4")
@@ -27,10 +30,39 @@ shape = SubResource("CapsuleShape2D_0knga")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="MenuPausa" parent="CanvasLayer" instance=ExtResource("3_crr88")]
-offset_left = -2.0
-offset_right = -2.0
+offset_left = 1.0
+offset_top = 3.0
+offset_right = 1.0
+offset_bottom = 3.0
 
 [node name="eventHorizonTrail" type="Line2D" parent="."]
 position = Vector2(1, -5)
 width = 7.0
 default_color = Color(0.898039, 0.843137, 0.32549, 1)
+
+[node name="playerHitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="playerHitbox"]
+shape = SubResource("CircleShape2D_cx8dx")
+
+[node name="attackCooldown" type="Timer" parent="."]
+
+[node name="healthBar" type="ProgressBar" parent="."]
+modulate = Color(0.831373, 0.87451, 0, 1)
+offset_left = -6.0
+offset_top = -11.0
+offset_right = 114.0
+offset_bottom = 26.0
+scale = Vector2(0.1, 0.1)
+max_value = 500.0
+value = 500.0
+show_percentage = false
+
+[node name="reginTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="body_entered" from="playerHitbox" to="." method="_on_player_hitbox_body_entered"]
+[connection signal="body_exited" from="playerHitbox" to="." method="_on_player_hitbox_body_exited"]
+[connection signal="timeout" from="attackCooldown" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="timeout" from="reginTimer" to="." method="_on_regin_timer_timeout"]
