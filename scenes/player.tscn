@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://chm6mn12kuedv"]
+[gd_scene load_steps=13 format=3 uid="uid://chm6mn12kuedv"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_fajb4"]
 [ext_resource type="PackedScene" uid="uid://oupngxrkjjpv" path="res://scenes/startOfZone.tscn" id="2_7ksj4"]
-[ext_resource type="Texture2D" uid="uid://hq166s1gxao6" path="res://assets/free/assets/character/adult/body/idle/character_light_idle_body.png" id="2_cp48m"]
 [ext_resource type="PackedScene" uid="uid://bx2ij253vpsfi" path="res://scenes/menu_pausa.tscn" id="3_crr88"]
+[ext_resource type="Texture2D" uid="uid://da56u5emecrpa" path="res://assets/sci-fi/Merchant Tileset Sidescroller/merchant/idle.png" id="3_q0wih"]
+[ext_resource type="Texture2D" uid="uid://cy0vc0et86ylm" path="res://assets/sci-fi/Merchant Tileset Sidescroller/merchant/walk.png" id="3_rw8pw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0knga"]
 radius = 3.0
@@ -12,17 +13,190 @@ height = 12.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_cx8dx"]
 radius = 7.0
 
+[sub_resource type="Animation" id="Animation_2wkco"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivote/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_rw8pw")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivote/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pivote/Sprite2D:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Pivote/Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_k2fq6"]
+resource_name = "idle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivote/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_q0wih")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivote/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pivote/Sprite2D:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Pivote/Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_g4wfm"]
+resource_name = "run"
+
+[sub_resource type="Animation" id="Animation_02cdc"]
+resource_name = "walk"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivote/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_rw8pw")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivote/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pivote/Sprite2D:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Pivote/Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uu7cs"]
+_data = {
+"RESET": SubResource("Animation_2wkco"),
+"idle": SubResource("Animation_k2fq6"),
+"run": SubResource("Animation_g4wfm"),
+"walk": SubResource("Animation_02cdc")
+}
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 position = Vector2(167, 127)
 collision_layer = 3
 script = ExtResource("1_fajb4")
 startEventHorizonScene = ExtResource("2_7ksj4")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-10, -1)
-texture = ExtResource("2_cp48m")
-hframes = 3
-vframes = 4
+[node name="Pivote" type="Node2D" parent="."]
+rotation = 3.14159
+scale = Vector2(1, -1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Pivote"]
+position = Vector2(-1, -5)
+rotation = 3.14159
+scale = Vector2(0.7, -0.7)
+texture = ExtResource("3_rw8pw")
+hframes = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_0knga")
@@ -30,6 +204,7 @@ shape = SubResource("CapsuleShape2D_0knga")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="MenuPausa" parent="CanvasLayer" instance=ExtResource("3_crr88")]
+visible = false
 offset_left = 1.0
 offset_top = 3.0
 offset_right = 1.0
@@ -61,6 +236,11 @@ show_percentage = false
 [node name="reginTimer" type="Timer" parent="."]
 wait_time = 5.0
 autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_uu7cs")
+}
 
 [connection signal="body_entered" from="playerHitbox" to="." method="_on_player_hitbox_body_entered"]
 [connection signal="body_exited" from="playerHitbox" to="." method="_on_player_hitbox_body_exited"]
