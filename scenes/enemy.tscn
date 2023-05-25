@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://42rulclboxjq"]
+[gd_scene load_steps=27 format=3 uid="uid://42rulclboxjq"]
 
 [ext_resource type="Script" path="res://scenes/enemy.gd" id="1_68c01"]
 [ext_resource type="Texture2D" uid="uid://dwopmnflvr816" path="res://assets/sci-fi/idle.png" id="2_5drvu"]
@@ -8,8 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://b0lx8hsolteox" path="res://assets/sci-fi/attack.png" id="6_sqjqh"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e7yij"]
-radius = 6.0
-height = 12.0
+radius = 7.0
+height = 14.0
 
 [sub_resource type="Animation" id="Animation_m548d"]
 length = 0.1
@@ -74,7 +74,7 @@ tracks/0/path = NodePath("Sprite2D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(1),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [ExtResource("6_sqjqh")]
@@ -86,7 +86,7 @@ tracks/1/path = NodePath("Sprite2D:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(1),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [11]
@@ -98,7 +98,7 @@ tracks/2/path = NodePath("Sprite2D:vframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(1),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [1]
@@ -127,7 +127,7 @@ tracks/0/path = NodePath("Sprite2D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.183729),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [ExtResource("4_lacrx")]
@@ -139,7 +139,7 @@ tracks/1/path = NodePath("Sprite2D:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.2),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [2]
@@ -151,7 +151,7 @@ tracks/2/path = NodePath("Sprite2D:vframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.2),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [1]
@@ -231,7 +231,7 @@ tracks/0/path = NodePath("Sprite2D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.2),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [ExtResource("2_5drvu")]
@@ -243,7 +243,7 @@ tracks/1/path = NodePath("Sprite2D:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.2),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [5]
@@ -255,7 +255,7 @@ tracks/2/path = NodePath("Sprite2D:vframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.2),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [1]
@@ -284,7 +284,7 @@ tracks/0/path = NodePath("Sprite2D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(1),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [ExtResource("5_aoxn0")]
@@ -296,7 +296,7 @@ tracks/1/path = NodePath("Sprite2D:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(1),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [8]
@@ -308,7 +308,7 @@ tracks/2/path = NodePath("Sprite2D:vframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(1),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [1]
@@ -370,6 +370,12 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_ch23c"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3060x"]
+bg_color = Color(0.870588, 0.25098, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b3keo"]
+bg_color = Color(0.521569, 0.658824, 0.215686, 1)
+
 [node name="enemy" type="CharacterBody2D"]
 script = ExtResource("1_68c01")
 
@@ -379,7 +385,6 @@ texture = ExtResource("2_5drvu")
 hframes = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 0)
 shape = SubResource("CapsuleShape2D_e7yij")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -398,8 +403,20 @@ shape = SubResource("CircleShape2D_gwd0c")
 tree_root = SubResource("AnimationNodeStateMachine_kfdx0")
 anim_player = NodePath("../AnimationPlayer")
 advance_expression_base_node = NodePath("../AnimationPlayer")
-active = true
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_ch23c")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+visible = false
+custom_minimum_size = Vector2(15, 3)
+offset_left = -6.0
+offset_top = -15.0
+offset_right = 9.0
+offset_bottom = -12.0
+size_flags_horizontal = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_3060x")
+theme_override_styles/fill = SubResource("StyleBoxFlat_b3keo")
+value = 100.0
+show_percentage = false
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
