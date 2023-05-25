@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://bpaggyh0rasms"]
+
+[ext_resource type="Script" path="res://scenes/hud.gd" id="1_5qa41"]
+
+[node name="HUD" type="MarginContainer"]
+offset_right = 16.0
+offset_bottom = 16.0
+script = ExtResource("1_5qa41")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(100, 10)
+layout_mode = 2
+size_flags_horizontal = 0
+value = 100.0
+show_percentage = false

@@ -1,10 +1,20 @@
 extends CharacterBody2D
 
-const SPEED = 125.0
+const SPEED = 95.0
+const MAX_HEALTH = 100
+const EVENT_HORIZON_DAMAGE = 30
+
 
 @export var startEventHorizonScene : PackedScene
 @onready var eventHorizonTrail = $eventHorizonTrail
-@onready var health_bar = $healthBar
+@onready var hud = $CanvasLayer/HUD
+
+var health = 100:
+	set(value):
+		health = value
+		hud.set_health(health)
+	get:
+		return health
 
 var enemy_inattack_range = false # Detecta si enemigo esta en la zona de ataque
 var enemy_attack_cooldown = true
@@ -66,10 +76,10 @@ func eventHorizon():
 		var all_enemies = get_tree().get_nodes_in_group("enemies")
 		for e in all_enemies:
 			if Geometry2D.is_point_in_polygon(e.global_position, eventHorizonTrail.points):
-				e.health = e.health - 50
+#				e.health = e.health - 50
+				e.take_damage(EVENT_HORIZON_DAMAGE)
 		# Volvemos a setear event_horizon a su valor por defecto false
 		is_event_horizon_activated = false
-		get_parent().remove_child(startEventHorizon)
 		eventHorizonTrail.points = []
 
 # ------------------------------------------------------------------------------
@@ -86,11 +96,15 @@ func _on_player_hitbox_body_exited(body):
 
 func enemy_attack():
 	if enemy_inattack_range and enemy_attack_cooldown == true:
-		health_bar.value -= 50
+#		health_bar.value -= 50
+		take_damage(10)
 		enemy_attack_cooldown = false
 		$attackCooldown.start()
 		print("enemy attack!")
-		print("healthbar.value", health_bar.value)
+#		print("healthbar.value", health_bar.value)
+
+func take_damage(damage):
+	health = max(health - damage, 0)
 
 # Este metodo es similar al metodo enemy de la clase de enemigos, es para identificar
 # que el objeto sea de un tipo en especifico usando has_method(), como en el caso de la
@@ -111,17 +125,19 @@ func _on_attack_cooldown_timeout():
 # Cualquier edit a la barra de salud se debe hacer desde el nodo en el inspector.
 
 func update_health():
-	if health_bar.value >= 500:
-		health_bar.visible = false
-	else:
-		health_bar.visible = true
+	pass
+#	if health_bar.value >= 500:
+#		health_bar.visible = false
+#	else:
+#		health_bar.visible = true
 
 func _on_regin_timer_timeout():
-	if health_bar.value < 500:
-		health_bar.value += 40
-		if health_bar.value > 500:
-			health_bar.value = 500
-	if health_bar.value <= 0:
-		health_bar.value = 0
+	pass
+#	if health_bar.value < 500:
+#		health_bar.value += 40
+#		if health_bar.value > 500:
+#			health_bar.value = 500
+#	if health_bar.value <= 0:
+#		health_bar.value = 0
 
 # ------------------------------------------------------------------------------

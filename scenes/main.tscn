@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://clebywqbsfsm5"]
+[gd_scene load_steps=10 format=3 uid="uid://clebywqbsfsm5"]
 
 [ext_resource type="Texture2D" uid="uid://diosaqpdvgffj" path="res://assets/sci-fi/SCi-fi assets planet one.png" id="1_hnxmk"]
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_xorg5"]
 [ext_resource type="PackedScene" uid="uid://chm6mn12kuedv" path="res://scenes/player.tscn" id="2_x5dus"]
 [ext_resource type="PackedScene" uid="uid://42rulclboxjq" path="res://scenes/enemy.tscn" id="3_qbdu6"]
 [ext_resource type="PackedScene" uid="uid://bkrcw740k41os" path="res://scenes/enemy_2.tscn" id="4_w3xgj"]
+[ext_resource type="PackedScene" uid="uid://cyhug61jfcb4e" path="res://scenes/guardian_enemy.tscn" id="5_wq5wj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qther"]
 texture = ExtResource("1_hnxmk")
@@ -832,6 +833,7 @@ script = ExtResource("1_xorg5")
 PlayerScene = ExtResource("2_x5dus")
 EnemyScene = ExtResource("3_qbdu6")
 Enemy_2Scene = ExtResource("4_w3xgj")
+GuardianEnemyScene = ExtResource("5_wq5wj")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_xqx8s")
