@@ -1,12 +1,24 @@
 extends CharacterBody2D
 
-@onready var progress_bar = $ProgressBar
+@export var BulletScene : PackedScene
 
-const SPEED = 45
+@onready var progress_bar = $ProgressBar
+@onready var animated_sprite_2d = $AnimatedSprite2D
+
+var target = null
+var target_in_zone = false
+
+const SPEED = 20
 const MAX_HEALTH = 100
+
+enum {
+	PATROL,
+	ENGAGE
+}
 
 func _physics_process(delta):
 	deal_with_damage()
+	shot()
 
 var health = MAX_HEALTH:
 	set(value):
@@ -24,5 +36,29 @@ func take_damage(damage):
 
 func deal_with_damage():
 	if health == 0:
-#		animation_player.play("death")
+#		animated_sprite_2d.play("death")
 		get_parent().remove_child(self)
+
+func shot():
+	if target:
+		var bullet = BulletScene.instantiate()
+#		bullet.global_position = self.get_global_position()
+		add_child(bullet)
+		bullet.global_position = global_position
+		bullet.rotation = global_rotation
+		
+		var direction = (target.global_position - global_position).normalized()
+#		bullet.global_position = direction
+#		bullet.position += (target.global_position - global_position)/SPEED
+#		bullet.global_rotation = direction
+		
+
+func _on_shooting_zone_body_entered(body):
+	if body.has_method("player"):
+		target = body
+		target_in_zone = true
+
+func _on_shooting_zone_body_exited(body):
+	if body.has_method("player"):
+		target = null
+		target_in_zone = false

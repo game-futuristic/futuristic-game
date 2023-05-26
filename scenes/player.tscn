@@ -1,33 +1,105 @@
-[gd_scene load_steps=10 format=3 uid="uid://chm6mn12kuedv"]
+[gd_scene load_steps=21 format=3 uid="uid://chm6mn12kuedv"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_fajb4"]
 [ext_resource type="PackedScene" uid="uid://oupngxrkjjpv" path="res://scenes/startOfZone.tscn" id="2_7ksj4"]
-[ext_resource type="Texture2D" uid="uid://hq166s1gxao6" path="res://assets/free/assets/character/adult/body/idle/character_light_idle_body.png" id="2_cp48m"]
 [ext_resource type="PackedScene" uid="uid://bx2ij253vpsfi" path="res://scenes/menu_pausa.tscn" id="3_crr88"]
-[ext_resource type="Texture2D" uid="uid://bxastlrhgmel2" path="res://assets/shooting-sprites/64x64_Aura_1.png" id="5_4m2af"]
+[ext_resource type="Texture2D" uid="uid://dvfcgr8lsf1j" path="res://assets/shooting-sprites/32x32_Grow_12.png" id="5_5osv4"]
 [ext_resource type="PackedScene" uid="uid://bpaggyh0rasms" path="res://scenes/hud.tscn" id="5_lkbsr"]
+[ext_resource type="Texture2D" uid="uid://da56u5emecrpa" path="res://assets/sci-fi/Merchant Tileset Sidescroller/merchant/idle.png" id="7_0mowk"]
+[ext_resource type="Texture2D" uid="uid://cy0vc0et86ylm" path="res://assets/sci-fi/Merchant Tileset Sidescroller/merchant/walk.png" id="8_j212f"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0knga"]
 radius = 3.0
 height = 12.0
 
-[sub_resource type="Gradient" id="Gradient_47hf8"]
+[sub_resource type="Gradient" id="Gradient_6ge77"]
 interpolation_mode = 1
+colors = PackedColorArray(0, 1, 1, 1, 0, 1, 1, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cx8dx"]
-radius = 7.0
+radius = 9.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g8s58"]
+atlas = ExtResource("7_0mowk")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xt7k5"]
+atlas = ExtResource("7_0mowk")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rxium"]
+atlas = ExtResource("7_0mowk")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_psi6d"]
+atlas = ExtResource("7_0mowk")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qo1w3"]
+atlas = ExtResource("8_j212f")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rqyr2"]
+atlas = ExtResource("8_j212f")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ctn03"]
+atlas = ExtResource("8_j212f")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d6tb1"]
+atlas = ExtResource("8_j212f")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ab0tn"]
+atlas = ExtResource("8_j212f")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hjl4u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g8s58")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xt7k5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rxium")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_psi6d")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qo1w3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rqyr2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ctn03")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d6tb1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ab0tn")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 position = Vector2(167, 127)
 collision_layer = 3
 script = ExtResource("1_fajb4")
 startEventHorizonScene = ExtResource("2_7ksj4")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-10, -1)
-texture = ExtResource("2_cp48m")
-hframes = 3
-vframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_0knga")
@@ -49,11 +121,14 @@ offset_bottom = 211.0
 [node name="eventHorizonTrail" type="Line2D" parent="."]
 texture_repeat = 2
 position = Vector2(1, -5)
-width = 7.0
+width = 11.0
 default_color = Color(0.898039, 0.843137, 0.32549, 1)
-gradient = SubResource("Gradient_47hf8")
-texture = ExtResource("5_4m2af")
+gradient = SubResource("Gradient_6ge77")
+texture = ExtResource("5_5osv4")
 texture_mode = 2
+antialiased = true
+
+[node name="EventHorizonBar" type="Timer" parent="eventHorizonTrail"]
 
 [node name="playerHitbox" type="Area2D" parent="."]
 
@@ -65,6 +140,14 @@ shape = SubResource("CircleShape2D_cx8dx")
 [node name="reginTimer" type="Timer" parent="."]
 wait_time = 5.0
 autostart = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(3, -5)
+scale = Vector2(0.8, 0.8)
+sprite_frames = SubResource("SpriteFrames_hjl4u")
+animation = &"walk"
+autoplay = "walk"
+frame_progress = 0.964793
 
 [connection signal="body_entered" from="playerHitbox" to="." method="_on_player_hitbox_body_entered"]
 [connection signal="body_exited" from="playerHitbox" to="." method="_on_player_hitbox_body_exited"]

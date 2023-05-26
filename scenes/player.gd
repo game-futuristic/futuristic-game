@@ -8,6 +8,7 @@ const EVENT_HORIZON_DAMAGE = 30
 @export var startEventHorizonScene : PackedScene
 @onready var eventHorizonTrail = $eventHorizonTrail
 @onready var hud = $CanvasLayer/HUD
+@onready var animated_sprite_2d = $AnimatedSprite2D
 
 var health = 100:
 	set(value):
@@ -34,6 +35,12 @@ func _physics_process(delta):
 	player_movement()
 	eventHorizon()
 	enemy_attack()
+	if Input.is_action_just_pressed("left"):
+		animated_sprite_2d.flip_h = true
+	if Input.is_action_just_pressed("right"):
+		animated_sprite_2d.flip_h = false
+	if !Input.is_action_just_pressed("right") and Input.is_action_just_pressed("down") and Input.is_action_just_pressed("left") and Input.is_action_just_pressed("up"):
+		animated_sprite_2d.play("idle")
 
 func _process(delta):
 	update_health()

@@ -1,6 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://bx2ij253vpsfi"]
+[gd_scene load_steps=5 format=3 uid="uid://bx2ij253vpsfi"]
 
+[ext_resource type="FontFile" uid="uid://xgj8fv0x0lbd" path="res://assets/letra/PixelHigh.ttf" id="1_l7h4f"]
 [ext_resource type="Script" path="res://scenes/menu_pausa.gd" id="1_qjv57"]
+[ext_resource type="FontFile" uid="uid://4gh2walqvtl3" path="res://assets/letra/PixelMiddle.ttf" id="2_scir4"]
+
+[sub_resource type="Theme" id="Theme_udbub"]
+default_font = ExtResource("2_scir4")
+Label/fonts/font = ExtResource("1_l7h4f")
 
 [node name="MenuPausa" type="MarginContainer"]
 process_mode = 3
@@ -11,6 +17,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme = SubResource("Theme_udbub")
 script = ExtResource("1_qjv57")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]

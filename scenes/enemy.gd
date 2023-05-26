@@ -1,9 +1,8 @@
 extends CharacterBody2D
 
 @onready var animation_tree = $AnimationTree
-@onready var playback = animation_tree.get("parameters/playback")
-@onready var animation_player = $AnimationPlayer
 @onready var progress_bar = $ProgressBar
+@onready var animated_sprite_2d = $AnimatedSprite2D
 
 const SPEED = 45
 const MAX_HEALTH = 100
@@ -29,9 +28,7 @@ func _physics_process(delta):
 
 	if player_chase:
 		position += (player.global_position - position)/SPEED
-		animation_player.play("run")
-	else:
-		animation_player.play("idle")
+		animated_sprite_2d.play("run")
 	deal_with_damage()
 
 func _on_detection_area_body_entered(body):
