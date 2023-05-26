@@ -7,11 +7,6 @@ extends Node2D
 
 var player
 var enemy_2
-var enemy1
-var enemy2
-var enemy3
-var guardian_enemy
-var enemiesArray = [enemy1, enemy2, enemy3]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,17 +15,9 @@ func _ready():
 	enemy_2 = Enemy_2Scene.instantiate()
 	add_child(enemy_2)
 	var x_pos = 50
-	var i = 1
-	guardian_enemy = GuardianEnemyScene.instantiate()
-	guardian_enemy.global_position = Vector2(50, 50)
-	add_child(guardian_enemy)
-	guardian_enemy.add_to_group("enemies")
-	for e in enemiesArray:
-		e = EnemyScene.instantiate()
-		e.global_position = Vector2(x_pos*i, 100)
-		i += 2
-		add_child(e)
-		e.add_to_group("enemies")
+	create_enemy(50, 50, GuardianEnemyScene)
+	for i in range(1, 6, 2):
+		create_enemy(x_pos * i, 100, EnemyScene)
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -40,3 +27,10 @@ func _process(delta):
 func _physics_process(delta):
 	enemy_2.update_target_position(player.global_position)
 	enemy_2._physics_process(delta)
+
+# Por ahora crearemos los guardianes dandole una coordenada de spawneo
+func create_enemy(x, y, packed_scene):
+	var enemy = packed_scene.instantiate()
+	enemy.global_position = Vector2(x, y)
+	add_child(enemy)
+	enemy.add_to_group("enemies") # Esto despues no seria necesario pues se obtienen enemigos sabiendo que tienen el metodo takedamage
