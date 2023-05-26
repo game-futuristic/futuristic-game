@@ -1,7 +1,8 @@
-[gd_scene load_steps=32 format=3 uid="uid://cyhug61jfcb4e"]
+[gd_scene load_steps=34 format=3 uid="uid://cyhug61jfcb4e"]
 
 [ext_resource type="Script" path="res://scenes/guardian_enemy.gd" id="1_igqok"]
 [ext_resource type="Texture2D" uid="uid://c1oxesqrklm1v" path="res://assets/sci-fi/guardian/Guardian Sprite-Sheet.png" id="1_r2k87"]
+[ext_resource type="PackedScene" uid="uid://jxvoesrjic1t" path="res://scenes/bullets/guardian_bullet.tscn" id="2_goqtg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nlo2e"]
 radius = 5.0
@@ -206,21 +207,26 @@ bg_color = Color(0.870588, 0.25098, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_53eje"]
 bg_color = Color(0.521569, 0.658824, 0.215686, 1)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_yn73e"]
+radius = 197.143
+
 [node name="guardian_enemy" type="CharacterBody2D"]
+visible = false
 position = Vector2(-1, 0)
 scale = Vector2(0.7, 0.7)
 script = ExtResource("1_igqok")
+BulletScene = ExtResource("2_goqtg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 0)
 shape = SubResource("CapsuleShape2D_nlo2e")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(3, 11)
+position = Vector2(-2.38419e-07, 12.8571)
 scale = Vector2(1.4, 1.4)
 sprite_frames = SubResource("SpriteFrames_m0xmn")
+animation = &"death"
 autoplay = "default"
-frame_progress = 0.256541
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 visible = false
@@ -234,3 +240,11 @@ theme_override_styles/background = SubResource("StyleBoxFlat_288ik")
 theme_override_styles/fill = SubResource("StyleBoxFlat_53eje")
 value = 100.0
 show_percentage = false
+
+[node name="ShootingZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShootingZone"]
+shape = SubResource("CircleShape2D_yn73e")
+
+[connection signal="body_entered" from="ShootingZone" to="." method="_on_shooting_zone_body_entered"]
+[connection signal="body_exited" from="ShootingZone" to="." method="_on_shooting_zone_body_exited"]

@@ -8,6 +8,7 @@ const EVENT_HORIZON_DAMAGE = 30
 @export var startEventHorizonScene : PackedScene
 @onready var eventHorizonTrail = $eventHorizonTrail
 @onready var hud = $CanvasLayer/HUD
+@onready var animated_sprite_2d = $AnimatedSprite2D
 
 var health = 100:
 	set(value):
@@ -19,7 +20,6 @@ var health = 100:
 var enemy_inattack_range = false # Detecta si enemigo esta en la zona de ataque
 var enemy_attack_cooldown = true
 var player_alive = true
-var move_input
 
 @onready var startEventHorizon = startEventHorizonScene.instantiate()
 
@@ -35,16 +35,12 @@ func _physics_process(delta):
 	player_movement()
 	eventHorizon()
 	enemy_attack()
-	if velocity[0]>0:
-		move_input = 1
-	else:
-		move_input = -1
-	if move_input:
-		pivote.scale.x = sign(move_input)
-	if velocity==Vector2.ZERO:
-		animation_player.play("idle")
-	else:
-		animation_player.play("walk")
+	if Input.is_action_just_pressed("left"):
+		animated_sprite_2d.flip_h = true
+	if Input.is_action_just_pressed("right"):
+		animated_sprite_2d.flip_h = false
+	if !Input.is_action_just_pressed("right") and Input.is_action_just_pressed("down") and Input.is_action_just_pressed("left") and Input.is_action_just_pressed("up"):
+		animated_sprite_2d.play("idle")
 
 func _process(delta):
 	update_health()

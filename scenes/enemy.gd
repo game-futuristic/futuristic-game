@@ -1,7 +1,8 @@
 extends CharacterBody2D
 
-@onready var animation_player = $AnimationPlayer
+@onready var animation_tree = $AnimationTree
 @onready var progress_bar = $ProgressBar
+@onready var animated_sprite_2d = $AnimatedSprite2D
 
 const SPEED = 45
 const MAX_HEALTH = 100
@@ -27,18 +28,18 @@ func _physics_process(delta):
 
 	if player_chase:
 		position += (player.global_position - position)/SPEED
-		animation_player.play("run")
-	else:
-		animation_player.play("idle")
+		animated_sprite_2d.play("run")
 	deal_with_damage()
 
 func _on_detection_area_body_entered(body):
 	player = body
 	player_chase = true
 		
+		
 func _on_detection_area_body_exited(body):
 	player = null
 	player_chase = false
+
 func enemy():
 	pass
 
@@ -48,6 +49,7 @@ func set_health(value):
 func _on_enemy_hitbox_body_entered(body):
 	if body.has_method("player"):
 		player_inattack_zone = true
+
 
 func _on_enemy_hitbox_body_exited(body):
 	if body.has_method("player"):

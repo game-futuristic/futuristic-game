@@ -1,72 +1,52 @@
-[gd_scene load_steps=18 format=3 uid="uid://oupngxrkjjpv"]
+[gd_scene load_steps=10 format=3 uid="uid://oupngxrkjjpv"]
 
 [ext_resource type="Script" path="res://scenes/startOfZone.gd" id="1_didj6"]
-[ext_resource type="Texture2D" uid="uid://ux0eye3h80a6" path="res://assets/shooting-sprites/start-zone/32x32_Star_0.png" id="2_rk0uu"]
-[ext_resource type="Texture2D" uid="uid://d1fg5t6d4k7x0" path="res://assets/shooting-sprites/start-zone/32x32_Star_1.png" id="3_hhsps"]
-[ext_resource type="Texture2D" uid="uid://bh2nroc681jkc" path="res://assets/shooting-sprites/start-zone/32x32_Star_2.png" id="4_eoh44"]
-[ext_resource type="Texture2D" uid="uid://dtciebpepiggw" path="res://assets/shooting-sprites/start-zone/32x32_Star_3.png" id="5_tf637"]
-[ext_resource type="Texture2D" uid="uid://clxsofq2cepv8" path="res://assets/shooting-sprites/start-zone/32x32_Star_4.png" id="6_eal32"]
-[ext_resource type="Texture2D" uid="uid://bknnxicj4phtj" path="res://assets/shooting-sprites/start-zone/32x32_Star_5.png" id="7_bbamb"]
-[ext_resource type="Texture2D" uid="uid://bot7b35n18ktf" path="res://assets/shooting-sprites/start-zone/32x32_Star_6.png" id="8_w1tan"]
+[ext_resource type="Texture2D" uid="uid://dc47yr2nmer3v" path="res://assets/shooting-sprites/01_Pixel_FX_Texture-PhotoRoom.png-PhotoRoom.png" id="2_to62j"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o5f78"]
 radius = 32.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cx61n"]
-atlas = ExtResource("2_rk0uu")
-region = Rect2(0, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_leogs"]
+atlas = ExtResource("2_to62j")
+region = Rect2(0, 130, 32, 26)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3toti"]
-atlas = ExtResource("3_hhsps")
-region = Rect2(0, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_y37yg"]
+atlas = ExtResource("2_to62j")
+region = Rect2(32, 130, 32, 26)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yjb8d"]
-atlas = ExtResource("4_eoh44")
-region = Rect2(0, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_433wk"]
+atlas = ExtResource("2_to62j")
+region = Rect2(64, 130, 32, 26)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_laa2k"]
-atlas = ExtResource("5_tf637")
-region = Rect2(0, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_l5wwd"]
+atlas = ExtResource("2_to62j")
+region = Rect2(96, 130, 32, 26)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ur77j"]
-atlas = ExtResource("6_eal32")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5ads7"]
-atlas = ExtResource("7_bbamb")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ayc5a"]
-atlas = ExtResource("8_w1tan")
-region = Rect2(0, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_dn1sb"]
+atlas = ExtResource("2_to62j")
+region = Rect2(128, 130, 32, 26)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3x3fn"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_cx61n")
+"texture": SubResource("AtlasTexture_leogs")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3toti")
+"texture": SubResource("AtlasTexture_y37yg")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_yjb8d")
+"texture": SubResource("AtlasTexture_433wk")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_laa2k")
+"texture": SubResource("AtlasTexture_l5wwd")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ur77j")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5ads7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ayc5a")
+"texture": SubResource("AtlasTexture_dn1sb")
 }],
 "loop": true,
 "name": &"default",
-"speed": 15.0
+"speed": 8.0
 }]
 
 [node name="StartOfZone" type="Area2D"]
@@ -80,7 +60,7 @@ shape = SubResource("CircleShape2D_o5f78")
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_3x3fn")
 autoplay = "default"
-frame_progress = 0.692146
+frame_progress = 0.126305
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
