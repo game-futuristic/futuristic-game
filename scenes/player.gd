@@ -19,6 +19,7 @@ var health = 100:
 var enemy_inattack_range = false # Detecta si enemigo esta en la zona de ataque
 var enemy_attack_cooldown = true
 var player_alive = true
+var move_input
 
 @onready var startEventHorizon = startEventHorizonScene.instantiate()
 
@@ -34,6 +35,16 @@ func _physics_process(delta):
 	player_movement()
 	eventHorizon()
 	enemy_attack()
+	if velocity[0]>0:
+		move_input = 1
+	else:
+		move_input = -1
+	if move_input:
+		pivote.scale.x = sign(move_input)
+	if velocity==Vector2.ZERO:
+		animation_player.play("idle")
+	else:
+		animation_player.play("walk")
 
 func _process(delta):
 	update_health()
