@@ -10,6 +10,9 @@
 radius = 3.0
 height = 12.0
 
+[sub_resource type="Gradient" id="Gradient_47hf8"]
+interpolation_mode = 1
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_cx8dx"]
 radius = 7.0
 
@@ -210,10 +213,20 @@ offset_top = 3.0
 offset_right = 1.0
 offset_bottom = 3.0
 
+[node name="HUD" parent="CanvasLayer" instance=ExtResource("5_lkbsr")]
+offset_left = 9.0
+offset_top = 11.0
+offset_right = 377.0
+offset_bottom = 211.0
+
 [node name="eventHorizonTrail" type="Line2D" parent="."]
+texture_repeat = 2
 position = Vector2(1, -5)
 width = 7.0
 default_color = Color(0.898039, 0.843137, 0.32549, 1)
+gradient = SubResource("Gradient_47hf8")
+texture = ExtResource("5_4m2af")
+texture_mode = 2
 
 [node name="playerHitbox" type="Area2D" parent="."]
 
@@ -221,17 +234,6 @@ default_color = Color(0.898039, 0.843137, 0.32549, 1)
 shape = SubResource("CircleShape2D_cx8dx")
 
 [node name="attackCooldown" type="Timer" parent="."]
-
-[node name="healthBar" type="ProgressBar" parent="."]
-modulate = Color(0.831373, 0.87451, 0, 1)
-offset_left = -6.0
-offset_top = -11.0
-offset_right = 114.0
-offset_bottom = 26.0
-scale = Vector2(0.1, 0.1)
-max_value = 500.0
-value = 500.0
-show_percentage = false
 
 [node name="reginTimer" type="Timer" parent="."]
 wait_time = 5.0
