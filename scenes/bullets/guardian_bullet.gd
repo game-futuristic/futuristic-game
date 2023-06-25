@@ -1,13 +1,21 @@
-extends Node2D
+extends CharacterBody2D
 
-# Called when the node enters the scene tree for the first time.
+@onready var nav_agent = $NavigationAgent2D
+const SPEED = 10
+
 func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+	pass
+	
 func _process(delta):
 	pass
 
 func _physics_process(delta):
-	pass
+	var current_position = global_transform.origin
+	var next_position = nav_agent.get_next_path_position()
+	var new_velocity = (next_position - current_position).normalized() * SPEED
+	
+	velocity = new_velocity
+	move_and_slide()
+
+func update_target_position(target_position):
+	nav_agent.set_target_position(target_position)

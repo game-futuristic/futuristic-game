@@ -1,12 +1,21 @@
-extends CharacterBody2D
+extends Enemy
 
 @onready var nav_agent = $NavigationAgent2D
 @onready var animation_player = $AnimationPlayer
-@onready var animation_tree = $AnimationTree
 @onready var pivote = $Pivote
+@onready var progress_bar = $ProgressBar
 
+const SPEED = 10
+const MAX_HEALTH = 100
 
-var SPEED = 10
+var health = MAX_HEALTH:
+	set(value):
+		health = value
+		progress_bar.value = value
+		progress_bar.visible = true # Solo visible cuando el jugador danha al enemigo
+		deal_with_damage()
+	get:
+		return health
 
 func _physics_process(delta):
 	#pathfinding
@@ -33,6 +42,13 @@ func _physics_process(delta):
 func update_target_position(target_position):
 	nav_agent.set_target_position(target_position)
 
+func take_damage(damage):
+	health = maxi(health - damage, 0)
+
+func deal_with_damage():
+	if health == 0:
+		animation_player.play("death")
+		get_parent().remove_child(self)
 
 
 	

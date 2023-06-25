@@ -5,6 +5,7 @@
 [node name="HUD" type="MarginContainer"]
 offset_right = 16.0
 offset_bottom = 16.0
+mouse_filter = 2
 script = ExtResource("1_5qa41")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]

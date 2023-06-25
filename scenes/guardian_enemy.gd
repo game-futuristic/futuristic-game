@@ -1,9 +1,10 @@
-extends CharacterBody2D
+extends Enemy
 
 @export var BulletScene : PackedScene
 
 @onready var progress_bar = $ProgressBar
 @onready var animated_sprite_2d = $AnimatedSprite2D
+@onready var timer = $Timer
 
 var target = null
 var target_in_zone = false
@@ -15,10 +16,10 @@ enum {
 	PATROL,
 	ENGAGE
 }
+var state = ENGAGE
 
 func _physics_process(delta):
 	deal_with_damage()
-	shot()
 
 var health = MAX_HEALTH:
 	set(value):
@@ -57,8 +58,10 @@ func _on_shooting_zone_body_entered(body):
 	if body.has_method("player"):
 		target = body
 		target_in_zone = true
+		timer.start()
 
 func _on_shooting_zone_body_exited(body):
 	if body.has_method("player"):
 		target = null
 		target_in_zone = false
+		timer.stop()

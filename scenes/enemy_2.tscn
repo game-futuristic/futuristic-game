@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bkrcw740k41os"]
+[gd_scene load_steps=18 format=3 uid="uid://bkrcw740k41os"]
 
 [ext_resource type="Script" path="res://scenes/enemy_2.gd" id="1_gei4p"]
 [ext_resource type="Texture2D" uid="uid://clt6obksra1y3" path="res://assets/sci-fi/enemy_2/idle.png" id="2_5fxbd"]
@@ -387,38 +387,15 @@ _data = {
 "run": SubResource("Animation_k11cp")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5osn6"]
-animation = &"death"
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uvh8e"]
+bg_color = Color(0.870588, 0.25098, 0, 1)
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0vpb0"]
-animation = &"idle"
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0vpe3"]
+bg_color = Color(0.521569, 0.658824, 0.215686, 1)
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jwlh7"]
-animation = &"run"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hh2vc"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fo23w"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qecae"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_frpuk"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_1ed2c"]
-states/death/node = SubResource("AnimationNodeAnimation_5osn6")
-states/death/position = Vector2(707, 100)
-states/idle/node = SubResource("AnimationNodeAnimation_0vpb0")
-states/idle/position = Vector2(318, 100)
-states/run/node = SubResource("AnimationNodeAnimation_jwlh7")
-states/run/position = Vector2(432, 100)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_hh2vc"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_fo23w"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_qecae"), "death", "End", SubResource("AnimationNodeStateMachineTransition_frpuk")]
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_e8lm5"]
-
-[node name="Enemy2" type="CharacterBody2D"]
+[node name="Enemy2" type="CharacterBody2D" groups=["enemy"]]
 position = Vector2(287, 76)
+motion_mode = 1
 script = ExtResource("1_gei4p")
 
 [node name="Pivote" type="Node2D" parent="."]
@@ -441,7 +418,14 @@ libraries = {
 "": SubResource("AnimationLibrary_0ni0d")
 }
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource("AnimationNodeStateMachine_1ed2c")
-anim_player = NodePath("../AnimationPlayer")
-parameters/playback = SubResource("AnimationNodeStateMachinePlayback_e8lm5")
+[node name="ProgressBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(15, 3)
+offset_left = -6.0
+offset_top = -15.0
+offset_right = 9.0
+offset_bottom = -12.0
+size_flags_horizontal = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_uvh8e")
+theme_override_styles/fill = SubResource("StyleBoxFlat_0vpe3")
+value = 100.0
+show_percentage = false
