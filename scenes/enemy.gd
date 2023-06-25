@@ -5,7 +5,7 @@ extends Enemy
 @export var playerr: PackedScene
 
 
-const SPEED = 45
+const SPEED = 60
 const MAX_HEALTH = 100
 
 var health = MAX_HEALTH:
@@ -23,7 +23,7 @@ func take_damage(damage):
 func deal_with_damage():
 	if health == 0:
 #		animation_player.play("death")
-		animated_sprite_2d.play("death")
+		Variables.cont = Variables.cont + 1
 		get_parent().remove_child(self) 
 
 
@@ -60,3 +60,4 @@ func _on_enemy_hitbox_body_entered(body):
 func _on_enemy_hitbox_body_exited(body):
 	if body.has_method("player"):
 		player_inattack_zone = false
+#----------------------------------------------------------------------------------------------

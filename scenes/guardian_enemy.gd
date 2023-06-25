@@ -6,8 +6,10 @@ extends Enemy
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var timer = $Timer
 
+
 var target = null
 var target_in_zone = false
+var bullet
 
 const SPEED = 20
 const MAX_HEALTH = 100
@@ -20,6 +22,7 @@ var state = ENGAGE
 
 func _physics_process(delta):
 	deal_with_damage()
+	
 
 var health = MAX_HEALTH:
 	set(value):
@@ -39,10 +42,11 @@ func deal_with_damage():
 	if health == 0:
 #		animated_sprite_2d.play("death")
 		get_parent().remove_child(self)
-
+		Variables.cont = Variables.cont + 2
+#------------------------------------------------------------------------------------------------------
 func shot():
 	if target:
-		var bullet = BulletScene.instantiate()
+		bullet = BulletScene.instantiate()
 #		bullet.global_position = self.get_global_position()
 		add_child(bullet)
 		bullet.global_position = global_position
@@ -52,7 +56,6 @@ func shot():
 #		bullet.global_position = direction
 #		bullet.position += (target.global_position - global_position)/SPEED
 #		bullet.global_rotation = direction
-		
 
 func _on_shooting_zone_body_entered(body):
 	if body.has_method("player"):

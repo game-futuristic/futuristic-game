@@ -20,7 +20,7 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vu41p"]
 
-[node name="Node2D" type="CharacterBody2D"]
+[node name="Guardian_bullet" type="Area2D"]
 script = ExtResource("1_icktn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -28,7 +28,3 @@ sprite_frames = SubResource("SpriteFrames_d5cuu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_vu41p")
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]

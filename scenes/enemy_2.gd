@@ -5,7 +5,7 @@ extends Enemy
 @onready var pivote = $Pivote
 @onready var progress_bar = $ProgressBar
 
-const SPEED = 10
+const SPEED = 15
 const MAX_HEALTH = 100
 
 var health = MAX_HEALTH:
@@ -49,6 +49,7 @@ func deal_with_damage():
 	if health == 0:
 		animation_player.play("death")
 		get_parent().remove_child(self)
+		Variables.cont = Variables.cont + 2
 
 
 	

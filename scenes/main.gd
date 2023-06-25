@@ -6,7 +6,6 @@ extends Node2D
 @onready var player = $Player
 @onready var timer = $Timer
 
-
 var enemy_2
 var time = 0
 var randomx 
@@ -21,7 +20,6 @@ func _ready():
 	#create_enemy(70, 70, GuardianEnemyScene)
 	#for i in range(1, 5, 2):
 	#	create_enemy(x_pos * i, 100, EnemyScene)
-	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -35,30 +33,27 @@ func _physics_process(delta):
 	
 
 func create_enemy(x, y, packed_scene):
+	Variables.enemigos = Variables.enemigos +1 
 	var enemy = packed_scene.instantiate()
 	if x!=randomx and y!=randomy:
 		enemy.global_position = Vector2(x, y)
-		add_child(enemy)
 	if x==randomx and y!=randomy:
-		randomx = randi_range(40, 350)
+		randomx = randi_range(-177, 650)
 		enemy.global_position = Vector2(randomx, y)
-		add_child(enemy)
 	if  x==randomx and y==randomy:
-		randomx = randi_range(40, 350)
-		randomy = randi_range(40, 100)
+		randomx = randi_range(-177, 650)
+		randomy = randi_range(40, 270)
 		enemy.global_position = Vector2(randomx, randomy)
-		add_child(enemy)
-
+	add_child(enemy)
 
 func _on_timer_timeout():
-	print(time)
 	if time == 0:
 		create_enemy(50, 70, EnemyScene,)
 	if time == 10:
-		create_enemy(50, 70, EnemyScene)
+		create_enemy(60, 70, EnemyScene)
 		create_enemy(300, 70, Enemy_2Scene)
 	if time == 30:
-		create_enemy(50, 70, EnemyScene)
+		create_enemy(70, 70, EnemyScene)
 		create_enemy(300, 70, Enemy_2Scene)
 		create_enemy(50, 90, EnemyScene)
 	if time == 50:
@@ -87,5 +82,14 @@ func _on_timer_timeout():
 		create_enemy(randomx, randomy, Enemy_2Scene)
 		create_enemy(randomx, randomy, EnemyScene)
 		create_enemy(randomx, randomy, GuardianEnemyScene)
+	if time >= 160 and Variables.enemigos ==0:
+		Variables.time = time
+		Variables.cont = Variables.cont + 10
+		get_tree().change_scene_to_file("res://scenes/menufinal.tscn")
+	if time == 220:
+		Variables.time = 220
+		get_tree().change_scene_to_file("res://scenes/menufinal.tscn")
+		
 	time = time +1
+	Variables.time = time
 	
