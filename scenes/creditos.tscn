@@ -729,6 +729,15 @@ size_flags_horizontal = 4
 text = "Creditos"
 horizontal_alignment = 1
 
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Assets and titlemaps por: penusbic
+fuente por: Lana Ro
+Creadores
+Nahuel
+Catlina 
+Alonso"
+
 [node name="Volver" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Volver"

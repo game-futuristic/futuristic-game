@@ -82,6 +82,7 @@ func eventHorizon():
 		if eventHorizonTrail.get_point_count() == 0 or \
 				global_position.distance_squared_to(eventHorizonTrail.points[-1]) > THRESHOLD:
 			eventHorizonTrail.add_point(global_position)
+			take_damage(1)
 
 func close_event_horizon():
 	var all_enemies = get_tree().get_nodes_in_group("enemy")
@@ -97,12 +98,15 @@ func close_event_horizon():
 # Control logica ataques enemigos
 
 func _on_player_hitbox_body_entered(body):
-	if body.has_method("enemy"):
+	if body.is_in_group("enemy"):
 		enemy_inattack_range = true
+	if body is Bullet:
+		take_damage(10)
+		body.queue_free()
 
 
 func _on_player_hitbox_body_exited(body):
-	if body.has_method("enemy"):
+	if body.is_in_group("enemy"):
 		enemy_inattack_range = false
 
 func enemy_attack():
@@ -111,11 +115,14 @@ func enemy_attack():
 		take_damage(10)
 		enemy_attack_cooldown = false
 		$attackCooldown.start()
-		print("enemy attack!")
+		#print("enemy attack!")
 #		print("healthbar.value", health_bar.value)
 
 func take_damage(damage):
 	health = max(health - damage, 0)
+	
+func heal(amount):
+	health = min(health + amount, MAX_HEALTH)
 	
 func deal_with_damage():
 	if health == 0:
@@ -157,3 +164,8 @@ func _on_regin_timer_timeout():
 #		health_bar.value = 0
 
 # ------------------------------------------------------------------------------
+
+
+func _on_area_2d_body_exited(body):
+	if is_instance_valid(body) and not body.is_queued_for_deletion():
+		heal(5)

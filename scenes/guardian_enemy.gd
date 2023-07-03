@@ -54,10 +54,10 @@ func shot():
 		bullet.global_position = global_position
 		bullet.rotation = global_rotation
 		
-		var direction = (target.global_position - global_position).normalized()
-#		bullet.global_position = direction
-#		bullet.position += (target.global_position - global_position)/SPEED
-#		bullet.global_rotation = direction
+		
+		#bullet.global_position = direction
+		#bullet.position += (target.global_position - global_position)/SPEED
+		#bullet.global_rotation = direction
 
 func _on_shooting_zone_body_entered(body):
 	if body.has_method("player"):
