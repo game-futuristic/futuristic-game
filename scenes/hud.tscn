@@ -1,15 +1,32 @@
-[gd_scene load_steps=2 format=3 uid="uid://bpaggyh0rasms"]
+[gd_scene load_steps=3 format=3 uid="uid://bpaggyh0rasms"]
 
 [ext_resource type="Script" path="res://scenes/hud.gd" id="1_5qa41"]
+[ext_resource type="Theme" uid="uid://cf0j4q8wnx5l2" path="res://scenes/main_menu.tres" id="2_ksxpr"]
 
 [node name="HUD" type="MarginContainer"]
 offset_right = 16.0
 offset_bottom = 16.0
+mouse_filter = 2
 script = ExtResource("1_5qa41")
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="PanelContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(100, 10)
 layout_mode = 2
 size_flags_horizontal = 0
 value = 100.0
 show_percentage = false
+
+[node name="enemigos" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_ksxpr")

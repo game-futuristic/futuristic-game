@@ -1,0 +1,8 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://cf0j4q8wnx5l2"]
+
+[ext_resource type="FontFile" uid="uid://xgj8fv0x0lbd" path="res://assets/letra/PixelHigh.ttf" id="1_hhxsu"]
+[ext_resource type="FontFile" uid="uid://4gh2walqvtl3" path="res://assets/letra/PixelMiddle.ttf" id="2_r1m3n"]
+
+[resource]
+default_font = ExtResource("2_r1m3n")
+Label/fonts/font = ExtResource("1_hhxsu")

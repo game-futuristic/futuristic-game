@@ -98,6 +98,7 @@ animations = [{
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 position = Vector2(167, 127)
 collision_layer = 3
+motion_mode = 1
 script = ExtResource("1_fajb4")
 startEventHorizonScene = ExtResource("2_7ksj4")
 
@@ -145,9 +146,10 @@ autostart = true
 position = Vector2(3, -5)
 scale = Vector2(0.8, 0.8)
 sprite_frames = SubResource("SpriteFrames_hjl4u")
-animation = &"walk"
+animation = &"idle"
 autoplay = "walk"
-frame_progress = 0.964793
+
+[node name="Camera2D" type="Camera2D" parent="."]
 
 [connection signal="body_entered" from="playerHitbox" to="." method="_on_player_hitbox_body_entered"]
 [connection signal="body_exited" from="playerHitbox" to="." method="_on_player_hitbox_body_exited"]

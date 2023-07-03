@@ -3,8 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://bpjodxfcptctx" path="res://assets/shooting-sprites/bullets/05_Pixel_FX_Texture-PhotoRoom.png-PhotoRoom.png" id="1_fuocg"]
 [ext_resource type="Script" path="res://scenes/bullets/guardian_bullet.gd" id="1_icktn"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_vu41p"]
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_l34l3"]
 atlas = ExtResource("1_fuocg")
 region = Rect2(290, 38, 29, 19)
@@ -20,14 +18,13 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Node2D" type="Node2D"]
-visible = false
+[sub_resource type="CircleShape2D" id="CircleShape2D_vu41p"]
+
+[node name="Guardian_bullet" type="Area2D" groups=["enemy"]]
 script = ExtResource("1_icktn")
 
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_vu41p")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_d5cuu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_vu41p")

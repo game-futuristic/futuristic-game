@@ -210,10 +210,10 @@ bg_color = Color(0.521569, 0.658824, 0.215686, 1)
 [sub_resource type="CircleShape2D" id="CircleShape2D_yn73e"]
 radius = 197.143
 
-[node name="guardian_enemy" type="CharacterBody2D"]
-visible = false
+[node name="guardian_enemy" type="CharacterBody2D" groups=["enemy"]]
 position = Vector2(-1, 0)
 scale = Vector2(0.7, 0.7)
+motion_mode = 1
 script = ExtResource("1_igqok")
 BulletScene = ExtResource("2_goqtg")
 
@@ -225,11 +225,10 @@ shape = SubResource("CapsuleShape2D_nlo2e")
 position = Vector2(-2.38419e-07, 12.8571)
 scale = Vector2(1.4, 1.4)
 sprite_frames = SubResource("SpriteFrames_m0xmn")
-animation = &"death"
+animation = &"new_animation"
 autoplay = "default"
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-visible = false
 custom_minimum_size = Vector2(15, 3)
 offset_left = -6.0
 offset_top = -21.0
@@ -246,5 +245,8 @@ show_percentage = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShootingZone"]
 shape = SubResource("CircleShape2D_yn73e")
 
+[node name="Timer" type="Timer" parent="."]
+
 [connection signal="body_entered" from="ShootingZone" to="." method="_on_shooting_zone_body_entered"]
 [connection signal="body_exited" from="ShootingZone" to="." method="_on_shooting_zone_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="shot"]

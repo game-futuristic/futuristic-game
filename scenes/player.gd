@@ -1,12 +1,13 @@
+class_name Player
 extends CharacterBody2D
 
 const SPEED = 95.0
 const MAX_HEALTH = 100
 const EVENT_HORIZON_DAMAGE = 30
-
+const THRESHOLD = 1225
 
 @export var startEventHorizonScene : PackedScene
-@onready var eventHorizonTrail = $eventHorizonTrail
+@onready var eventHorizonTrail : Line2D = $eventHorizonTrail
 @onready var hud = $CanvasLayer/HUD
 @onready var animated_sprite_2d = $AnimatedSprite2D
 
@@ -14,6 +15,7 @@ var health = 100:
 	set(value):
 		health = value
 		hud.set_health(health)
+		deal_with_damage()
 	get:
 		return health
 
@@ -48,11 +50,10 @@ func _process(delta):
 func _input(event):
 	if Input.is_action_just_pressed("eventHorizon") and !is_event_horizon_activated:
 		is_event_horizon_activated = true
-		startEventHorizon.global_position = self.get_global_position()
+		startEventHorizon.global_position = global_position
 		
 		# Volvemos a setear a valores por defecto false, pues al remover el nodo
 		# los valores son los seteados la ultima vez (i.e true)
-		startEventHorizon.area_closed = false
 		startEventHorizon.is_entering_again = false
 		
 		get_parent().add_child(startEventHorizon)
@@ -78,16 +79,19 @@ func player_movement():
 
 func eventHorizon():
 	if is_event_horizon_activated:
-		eventHorizonTrail.add_point(self.get_global_position())
-	if (startEventHorizon.area_closed):
-		var all_enemies = get_tree().get_nodes_in_group("enemies")
-		for e in all_enemies:
-			if Geometry2D.is_point_in_polygon(e.global_position, eventHorizonTrail.points):
+		if eventHorizonTrail.get_point_count() == 0 or \
+				global_position.distance_squared_to(eventHorizonTrail.points[-1]) > THRESHOLD:
+			eventHorizonTrail.add_point(global_position)
+
+func close_event_horizon():
+	var all_enemies = get_tree().get_nodes_in_group("enemy")
+	for e in all_enemies:
+		if Geometry2D.is_point_in_polygon(e.global_position, eventHorizonTrail.points):
 #				e.health = e.health - 50
-				e.take_damage(EVENT_HORIZON_DAMAGE)
-		# Volvemos a setear event_horizon a su valor por defecto false
-		is_event_horizon_activated = false
-		eventHorizonTrail.points = []
+			e.take_damage(EVENT_HORIZON_DAMAGE)
+	# Volvemos a setear event_horizon a su valor por defecto false
+	is_event_horizon_activated = false
+	eventHorizonTrail.clear_points()
 
 # ------------------------------------------------------------------------------
 # Control logica ataques enemigos
@@ -112,6 +116,11 @@ func enemy_attack():
 
 func take_damage(damage):
 	health = max(health - damage, 0)
+	
+func deal_with_damage():
+	if health == 0:
+#		animated_sprite_2d.play("death")
+		get_tree().change_scene_to_file("res://scenes/menufinal.tscn")
 
 # Este metodo es similar al metodo enemy de la clase de enemigos, es para identificar
 # que el objeto sea de un tipo en especifico usando has_method(), como en el caso de la
