@@ -731,12 +731,14 @@ horizontal_alignment = 1
 
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Assets and titlemaps por: penusbic
-fuente por: Lana Ro
-Creadores
-Nahuel
-Catlina 
-Alonso"
+text = "                  Assets 
+Penusbmic - enemigos, jugador, fondos
+Lana Ro - fuente de letra
+BDragon1727 - balas y estela
+               Creadores
+Catalina Platz 
+Nahuel Sanhueza
+Alonso Toledo"
 
 [node name="Volver" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
