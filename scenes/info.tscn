@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://hrgdonvl51kt"]
+[gd_scene load_steps=6 format=3 uid="uid://hrgdonvl51kt"]
 
 [ext_resource type="Texture2D" uid="uid://dwx0bl8ry3clr" path="res://assets/sci-fi/Merchant Tileset Sidescroller/Sci-fi Tileset re-imagined.png" id="1_1pmgv"]
+[ext_resource type="Theme" uid="uid://cf0j4q8wnx5l2" path="res://scenes/main_menu.tres" id="1_hsic5"]
 [ext_resource type="Script" path="res://scenes/info.gd" id="1_jdnn2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vjlyl"]
@@ -688,6 +689,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme = ExtResource("1_hsic5")
 script = ExtResource("1_jdnn2")
 
 [node name="TileMap" type="TileMap" parent="."]

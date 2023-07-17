@@ -840,7 +840,7 @@ size_flags_horizontal = 4
 [node name="Juego" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "business"
+text = "Business hell"
 horizontal_alignment = 1
 
 [node name="Inicio" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]

@@ -21,6 +21,10 @@ func _on_resume_pressed():
 	hide()
 	
 func _on_retry_pressed():
+	Variables.cont = 0 
+	Variables.time = 0 
+	Variables.enemigos = 0
+
 	get_tree().reload_current_scene()
 	get_tree().paused = false
 func _on_main_menu_pressed():

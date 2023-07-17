@@ -9,6 +9,9 @@ func _ready():
 	menu.pressed.connect(_on_menu_pressed)
 
 func _on_volver_pressed():
+	Variables.cont = 0 
+	Variables.time = 0 
+	Variables.enemigos = 0
 	get_tree().change_scene_to_file("res://scenes/main.tscn")
 	#get_tree().change_scene_to_packed(main_scene)
 func _on_menu_pressed():
@@ -16,4 +19,7 @@ func _on_menu_pressed():
 
 @onready var juego = $PanelContainer/MarginContainer/VBoxContainer/Juego
 func _process(delta):
-	juego.text = "Puntaje: "+str(Variables.cont)
+	if Variables.time == 250:
+		juego.text = "¡Felicidades sobreviviste!, tu puntaje es: "+str(Variables.cont)
+	else:
+		juego.text = "Al menos derrotaste algunos bandidos: "+str(Variables.cont)

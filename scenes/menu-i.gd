@@ -17,6 +17,9 @@ func _ready():
 	
 
 func _on_play_pressed():
+	Variables.cont = 0 
+	Variables.time = 0 
+	Variables.enemigos = 0
 	get_tree().change_scene_to_file("res://scenes/main.tscn")
 	#get_tree().change_scene_to_packed(main_scene)
 func _on_exit_pressed():

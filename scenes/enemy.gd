@@ -5,7 +5,7 @@ extends Enemy
 @export var playerr: PackedScene
 
 
-const SPEED = 60
+const SPEED = 80
 const MAX_HEALTH = 100
 
 var health = MAX_HEALTH:
